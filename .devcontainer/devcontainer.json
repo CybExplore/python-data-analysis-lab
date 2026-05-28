@@ -1,17 +1,31 @@
 {
-  "name": "Python Data Analysis",
-  "image": "mcr.microsoft.com/devcontainers/python:3.9",
+  "name": "Python Jupyter Lab",
+  "image": "mcr.microsoft.com/devcontainers/python:3.11",
   "features": {
-    "ghcr.io/devcontainers/features/python:1": {}
+    "ghcr.io/devcontainers/features/python:1": {
+      "version": "3.11"
+    }
   },
-  "postCreateCommand": "pip install pandas matplotlib numpy jupyter",
+  "postCreateCommand": "pip install jupyterlab pandas numpy matplotlib seaborn plotly jupyter ipywidgets",
+  "postStartCommand": "jupyter lab --ip=0.0.0.0 --port=8888 --ServerApp.open_browser=false --no-browser",
+  
   "customizations": {
     "vscode": {
       "extensions": [
         "ms-toolsai.jupyter",
         "ms-python.python",
-        "ms-python.vscode-pylance"
+        "ms-toolsai.datawrangler",
+        "ms-toolsai.jupyter-keymap"
       ]
     }
-  }
+  },
+
+  "portsAttributes": {
+    "8888": {
+      "label": "Jupyter Lab",
+      "onAutoForward": "openPreview"
+    }
+  },
+
+  "remoteUser": "vscode"
 }
